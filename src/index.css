@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-ivory font-sans font-normal text-ink antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid #171a18;
+    outline-offset: 4px;
+  }
+
+  ::selection {
+    background: #b9cf91;
+    color: #171a18;
+  }
+}
+
+@layer components {
+  .hero-grid {
+    background-image:
+      linear-gradient(to right, rgba(23, 26, 24, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(23, 26, 24, 0.06) 1px, transparent 1px);
+    background-size: 96px 96px;
+    animation: grid-drift 48s linear infinite;
+  }
+
+  .scroll-cue {
+    animation: scroll-cue 2.4s ease-in-out infinite;
+  }
+
+  .pulse-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pulse-ring 2.8s ease-out infinite;
+  }
+}
+
+@keyframes grid-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 96px 96px;
+  }
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-grid,
+  .scroll-cue,
+  .pulse-ring {
+    animation: none;
+  }
+}
